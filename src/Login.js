@@ -1,25 +1,53 @@
 import React, { Component } from 'react'
-import {View,Image, Button, TouchableOpacity} from 'react-native'
-
-
-
-
-
+import {View,Image, Button, TouchableOpacity,StyleSheet,TextInput,Alert} from 'react-native'
 class Login extends Component
 {
     constructor(){
-        const [Email, setEmail] =useState("Useless Text");
-        const [Password, setPasword] = useState("Useless Text");
-        const [pickerRole, setPicker] = useState("Select");   
+        super();
+        this.state={
+            email:'',
+            password:'',
+        };
+        this.validates = this.validates.bind(this);
+    
     }
 
-    
-        render(){
+    validates =() =>{
+        let text =this.state.email;
+        const {email} = this.state;
+        const {password} = this.state;
+        let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/ ; 
+        if(email == '' || password == '')
+        {
+            console.log('Email and PAssword are Empty')
+            Alert('Email and PAssword are Empty')
+        }
+        if(password.length<5){
+            console.log('Enter the Password is greter maximum 8 charecter')
+            Alert.alert('Enter the Password is greter maximum 8 charecter')
+
+        }
+        if (reg.test(text) === false)
+        {  Alert.alert("Invalid Emial")
+            console.log("Invalid Emial")
+            this.setState({emai:text})
+            return true;
+        }
+        else{
+           this.setState({email:text})
+           Alert.alert("Emial is correct")
+           Alert.alert("Password is correct")
+           console.log("Emial is correct")
+           console.log("Password is correct")
+        }
+    }
+        render(
+        ){
             return(
                 <View style={{flex:1}}>
                 <View style={{flex:1}}> </View>
                 <View style={{flex:2}}>
-                         <Picker
+                         {/* <Picker
                             pickerRole={pickerRole}
                             style={{ height: 50, width: 150 }}
                             onValueChange={(itemValue, itemIndex) => setPicker(itemValue)}
@@ -27,7 +55,7 @@ class Login extends Component
                             <Picker.Item label="Select " value="Select" />
                             <Picker.Item label="Admin" value="Admin" />
                             <Picker.Item label="Sale" value="sale" />
-                        </Picker>
+                        </Picker> */}
                     <View style={{flexDirection:'row'}}>
                         <View>
                            <Image style={{width:20,height:20}} source={require('../assets/images/user.png')}/>
@@ -35,8 +63,8 @@ class Login extends Component
                         <View>
                                 <TextInput
                                 style={styles.input}
-                                onChangeText={setEmail}
-                                value={Email}
+                                onChangeText={(text)=>this.setState({email:text})}
+                                value={this.state.email}
                                 placeholder="Email"
                                 keyboardType="Email"
                             />
@@ -49,15 +77,16 @@ class Login extends Component
                         <View>
                                 <TextInput
                                 style={styles.input}
-                                onChangeText={setPasword}
-                                value={Password}
+                                onChangeText={(password)=>this.setState({password:password})}
+                                value={this.state.password}
+                                secureTextEntry={true}
                                 placeholder="Password"
                                 keyboardType="Password"
                             />
                         </View>
                     </View>
                     <View>
-                        <Button title="Login"/>
+                        <Button title="Login" onPress={this.validates}/>
                     </View>
                     <View>
                         <View>
