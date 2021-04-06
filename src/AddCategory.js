@@ -11,6 +11,7 @@ class AddCategory extends Component
             name:'',
             email:''
         };
+        this.studentAdd = this.studentAdd.bind(this)
     }
 
     studentAdd(){
@@ -21,9 +22,9 @@ class AddCategory extends Component
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            name:this.state.name,
-            email:this.state.email
-
+            name:`${this.state.name}`,
+            email:`${this.state.email}`
+                
         })
         });
     }   
