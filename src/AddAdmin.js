@@ -39,7 +39,14 @@ console.log("Updated");
 
     render(){
             return(
+               
                 <ScrollView showsVerticalScrollIndicator={false} style={styles.create} >
+                    <View>
+                        <Text>Name:AdminUSer</Text>
+                        <Text>Emial:adminuser@gmail.com</Text>
+                        <Text>Contact:000000000</Text>
+                        <Image style={{width:20,height:20}} source={require('../assets/images/user.png')}/>
+                   </View>
                          <DropDownPicker
                             items={[
                                 {label: 'Male', value: 'Admin'},
