@@ -136,7 +136,6 @@ class AddCategory extends Component
                                             <View style={{flexDirection:'column-reverse',padding:10}}>
                                             <View style={{padding:10}}><Button title="Edit" /></View>
                                             <View><Button title="Delete" 
-                                            
                                            onPress={this.studentDelete(item.id)+console.log(item.id)}
                                             /></View>
                                             </View>

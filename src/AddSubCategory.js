@@ -11,7 +11,8 @@ class AddSubCategory extends Component
 
     constructor(){
         super();
-        this.state={
+        this.st
+        ate={
             data:[],
             subCate:'',
 
@@ -50,7 +51,6 @@ class AddSubCategory extends Component
                     <DropDownPicker
                             
                             items={data.map(item=> ({label:item.name,value:item.name}))}
-
                             defaultIndex={0}
                             containerStyle={{height: 40}}
                             onChangeItem={item => console.log(item.label, item.value)}
